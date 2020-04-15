@@ -10,10 +10,10 @@
 <div style="display:flex;">
    <div style="flex-wrap:wrap">
        {% for i in date %}
-         <table border="1" align="left" cellpadding="10" cellspacing="50" width="30%"  >
-                <tr><td>{{ i.day }}</td></tr>
-                <tr><td>{{ i.k_id }}</td></tr>
-                <tr><td>{{ i.text }}</td></tr>
+         <table border="1" align="left" cellpadding="10" cellspacing="50" width="20%"  >
+                <tr><td width="100%">{{ i.day }}</td></tr>
+                <tr><td width="100%">{{ i.k_id }}</td></tr>
+                <tr><td width="100%">{{ i.text }}</td></tr>
                 <tr><td><img src="{{ i.photo }}"></td></tr>
          </table>
        {% endfor %}
