@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block title %}お問い合わせ | Private Diary{% endblock %}
+
+{% block active_inquiry %}active{% endblock %}
+
+{% block contents %}
+<div class="container">
+    <div class="row">
+        <div class="my-div-style">
+            <form method="post">
+                {% csrf_token %}
+  <table>
+        {{ form.as_table }}
+    </table>
+    {% csrf_token %}
+    <button type="submit">送信</button>
+</form>
+        </div>
+    </div>
+</div>
+{% endblock %}

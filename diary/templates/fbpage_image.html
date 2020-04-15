@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block contents %}
+
+
+{% for d in fbdates %}
+<table border="3" align="center" cellpadding="10" cellspacing="50"  >
+   <tr><td>{{ d.day }}</td></tr>
+   <tr><td>{{ d.k_id }}</td></tr>
+   <tr><td>{{ d.text }}</td></tr>
+   <tr><td><img src="{{ d.photo }}"></td></tr>
+</table>
+{% endfor %}
+{% endblock %}

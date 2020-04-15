@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block contents %}
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+
+
+<table border="3" align="center" cellpadding="10" cellspacing="50"  >
+  <tr>
+      <td>Facebookページ名</td>     <td>いいね数</td>     <td>カテゴリ名</td>     <td>ページID</td>
+  </tr>
+  {% for fb in fbpage_list %}
+  <tr>
+      <td><a href="{% url 'diary:fbpage_detail' fb.pk %}">{{ fb.facebook_page }}</a></td> <td>{{ fb.good_number }}</td> <td>{{ fb.category_name }}</td> <td>{{ fb.id_number }}</td>
+  </tr>
+  {% endfor %}
+</table>
+{% endblock %}

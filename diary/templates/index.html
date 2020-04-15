@@ -1,10 +1,60 @@
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-    <meta charset="UTF-8">
-    <title>トップページ</title>
-</head>
-<body>
-     <h1>Hello World</h1>
-</body>
-</html>
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Dashboard{% endblock %}
+
+{% block header%}
+<header class="masthead text-center text-white">
+  <div class="masthead-content">
+    <div class="container">
+      <h1 class="masthead-heading mb-0">Dashboard</h1>
+      <a href="{% url 'account_login' %}" class="btn btn-primary btn-xl rounded-pill mt-5">LOG IN</a>
+    </div>
+  </div>
+  <div class="bg-circle-1 bg-circle"></div>
+  <div class="bg-circle-2 bg-circle"></div>
+  <div class="bg-circle-3 bg-circle"></div>
+  <div class="bg-circle-4 bg-circle"></div>
+</header>
+{% endblock %}
+
+{% block contents %}
+<section>
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col-lg-6 order-lg-1">
+        <div class="p-5">
+          <a href="{% url 'diary:fbpage_list' %}">Fbpage一覧</a>
+          <p>登録したFbpageの一覧で、登録の新しい順に並んでいます。リンク先は公式の広告ライブラリに遷移します。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col-lg-6">
+        <div class="p-5">
+          <a href="{% url 'diary:search' %}">FbpageIDの登録</a>
+          <p>スクレイピング対象のFbpageのID登録画面です</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col-lg-6 order-lg-1">
+        <div class="p-5">
+          <a href="{% url 'diary:fbpage_image' %}">広告一覧</a>
+          <p>広告の全一覧です。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}
