@@ -9,13 +9,14 @@
 <a href="https://ja-jp.facebook.com/ads/library/?active_status=all&ad_type=all&country=JP&impression_search_field=has_impressions_lifetime&view_all_page_id={{ d.id_number }}">広告ライブラリ</a>
 <div style="display:flex;">
    <div style="flex-wrap:wrap">
+       {% for i in date %}
          <table border="1" align="left" cellpadding="10" cellspacing="50" width="30%"  >
-            <tr><td >{{ i.day }}</td></tr>
-            <tr><td  >{{ i.k_id }}</td></tr>
-            <tr><td >{{ i.text }}</td></tr>
-            <tr><td  ><img src="{{ i.photo }}"></td></tr>
+                <tr><td>{{ i.day }}</td></tr>
+                <tr><td>{{ i.k_id }}</td></tr>
+                <tr><td>{{ i.text }}</td></tr>
+                <tr><td><img src="{{ i.photo }}"></td></tr>
          </table>
-      {% endfor %}
+       {% endfor %}
    </div>
 </div>
 {% endblock %}
