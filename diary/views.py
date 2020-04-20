@@ -56,35 +56,40 @@ class SearchView(generic.CreateView, generic.FormView):
         for x in range(1, height):
             driver.execute_script("window.scrollTo(0, " + str(50 * x) + ");")
 
-        name = driver.find_element_by_css_selector('._8wh_').text
-        date1 = driver.find_element_by_xpath(
-            '//*[@id="content"]/div/div[2]/div[2]/div[1]/div[1]/div/div[2]/div[1]/div/div/div[2]/div[2]/div[2]').text
-        date2 = driver.find_element_by_xpath(
-            '//*[@id="content"]/div/div[2]/div[2]/div[1]/div[1]/div/div[2]/div[1]/div/div/div[2]/div[2]/div[1]/div[1]').text
+        try:
+            name = driver.find_element_by_css_selector('._8wh_').text
+            date1 = driver.find_element_by_xpath(
+                '//*[@id="content"]/div/div[2]/div[2]/div[1]/div[1]/div/div[2]/div[1]/div/div/div[2]/div[2]/div[2]').text
+            date2 = driver.find_element_by_xpath(
+                '//*[@id="content"]/div/div[2]/div[2]/div[1]/div[1]/div/div[2]/div[1]/div/div/div[2]/div[2]/div[1]/div[1]').text
 
-        f = Fbpage(facebook_page=name, id_number=d, category_name=date1, good_number=date2)
-        f.save()
+            f = Fbpage(facebook_page=name, id_number=d, category_name=date1, good_number=date2)
+            f.save()
 
-        if len(driver.find_elements_by_css_selector('._7gn2')) > 0:
-            t = driver.find_elements_by_css_selector(('._7owt'))
-            for s in t:
-                if len(s.find_elements_by_css_selector('._7jys')) > 0:
-                    image = s.find_element_by_css_selector('._7jys').get_attribute('src')
-                    text = s.find_element_by_css_selector('._7jyr').text
-                    k_id = s.find_element_by_css_selector('._4rhp').text
-                    day = s.find_element_by_css_selector('._7jwu').text
-                    h = Fbdate(photo=image, id_number=d, text=text, k_id=k_id, day=day)
-                    h.save()
+            if len(driver.find_elements_by_css_selector('._7gn2')) > 0:
+                t = driver.find_elements_by_css_selector(('._7owt'))
+                Lists =[]
+                for s in t:
+                    if len(s.find_elements_by_css_selector('._7jys')) > 0:
+                        image = s.find_element_by_css_selector('._7jys').get_attribute('src')
+                        text = s.find_element_by_css_selector('._7jyr').text
+                        k_id = s.find_element_by_css_selector('._4rhp').text
+                        day = s.find_element_by_css_selector('._7jwu').text
+                        list = Fbdate(k_id=k_id, id_number=d, day=day, text=text, photo=image)
+                        Lists.append(list)
+
+                    else:
+                        print('なし')
+
+                Fbdate.objects.bulk_create(Lists)
+                driver.quit()
+                return redirect('diary:fbpage_list')
+
             else:
                 print('なし')
 
-        else:
-            print('なし')
-
-
-        driver.quit()
-        return redirect('diary:fbpage_list')
-
+        except:
+            return redirect('diary:error')
 
 class FbpageView(generic.ListView):
     model = Fbpage
@@ -112,3 +117,6 @@ class FbpageDetailView(generic.DetailView):
         id = Fbpage.objects.values('id_number').get(pk=self.kwargs.get('pk'))
         context['date'] = Fbdate.objects.filter(id_number=id["id_number"])
         return context
+
+def ErrorView(request):
+    return render(request, 'error.html',)

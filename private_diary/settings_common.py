@@ -40,7 +40,6 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'diary.middleware.login.LoginRequiredMiddleware',
 ]
 
 ROOT_URLCONF = 'private_diary.urls'
@@ -70,8 +69,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'private_diary',
-        'USER': os.environ.get('DB_USER'),
-        'PASSWORD': os.environ.get('DB_PASSWORD'),
+        'USER': 'postgres',
+        'PASSWORD': 'takahito',
         'HOST': '',
         'PORT': '',
     }

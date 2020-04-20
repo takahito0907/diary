@@ -33,6 +33,7 @@ try:
     if len(driver.find_elements_by_css_selector('._7gn2')) > 0:
         print(driver.find_element_by_css_selector('._7gn2').text)
         t = driver.find_elements_by_css_selector(('._7owt'))
+        Lists = []
         for s in t:
             if len(s.find_elements_by_css_selector('._7jys')) > 0:
                 image = s.find_element_by_css_selector('._7jys')
@@ -43,6 +44,13 @@ try:
                 print(day.text)
                 print(text.text)
                 print(image.get_attribute('src'))
+                list = {
+                    "k_id": k_id.text,
+                    "day": day.text,
+                    "text": text.text,
+                    "image": image.get_attribute('src'),
+                }
+                Lists.append(list)
             else:
                 print('なし')
 
@@ -54,5 +62,6 @@ try:
 
 finally:
     driver.quit()
+    print(Lists)
 
 

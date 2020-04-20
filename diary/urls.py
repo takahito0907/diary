@@ -10,5 +10,6 @@ urlpatterns = [
     path('fbpage-list/', views.FbpageView.as_view(), name="fbpage_list"),
     path('fbpage_image/', views.FbimageView, name="fbpage_image"),
     path('fbpage_detail/<int:pk>/', views.FbpageDetailView.as_view(), name="fbpage_detail"),
+    path('error/', views.ErrorView, name="error")
 
 ]
